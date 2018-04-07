@@ -1,0 +1,3 @@
+[submodule "aqi"]
+	path = aqi
+	url = git://github.com/mdrights/aqi.git
