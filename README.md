@@ -10,12 +10,12 @@
 详情请阅读博客：https://mdrights.github.io/os-observe
 
 ### 分享你的数据
-- 本仓库里的脚本（) 会把最新测量到的 PM2.5/PM10 值发送到：  
+- 本仓库里的脚本会把最新测量到的 PM2.5/PM10 值发送到：  
 	- [Riot.im 上的频道：#aqi-data-share](https://riot.im/app/#/room/#aqi-data-share:matrix.org)  
 	- （同时同步到）IRC(OFTC) 上的频道：#aqi-data-share
 
 - 访问数据  
-下载安装 Riot.im 应用（电脑/手机），或  
+下载安装 Riot.im 应用（电脑/手机），或   
 电脑浏览器访问上面的网址。  
 （无需注册）  
 
@@ -27,4 +27,6 @@
 - aqi-start.sh: 解析数据（用`jq`），然后调用 `irc-client.py`。  
 
 ### 启动
-先启动 `aqi/aqi.py` 放入后台，再使用 cron 定时执行 `aqi-start.sh` 即可。
+- 克隆本仓库到树莓派（或任何一种单板/开发板）你的用户家目录下；  
+- 安装 jq（apt/yum 安装，或从Github/别处下载）；  
+- 先启动 `aqi/aqi.py` 放入后台，再使用 cron 定时执行 `aqi-start.sh` 即可。
