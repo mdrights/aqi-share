@@ -24,6 +24,7 @@
 - aqi: 修改自 @zefanja 的python 脚本，读取传感器的数据（每小时采集一次）；javascript 脚本呈现数据并计算AQI。  
 - irc-client.py: 发送最新的值到 IRC 的频道。  
 - aqi-start.sh: 解析数据（用`jq`），然后调用 `irc-client.py`。  
+- my-aqi.sh: （定期检查）aqi.py 是否在运行；如没有则启动之。
 
 ### 启动
 - 克隆本仓库到树莓派（或任何一种单板/开发板）你的用户家目录下；  
