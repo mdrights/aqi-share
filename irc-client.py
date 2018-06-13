@@ -60,10 +60,10 @@ data = open('/tmp/aqi-latest.json', 'rU')
 
 while True:
     reply = irc.recv(4096)
-    print reply
+#    print reply
 
     code = reply.split()
-    print code[-7]
+#    print code
 
     if code[-7] == '366':
         for message in data:
