@@ -47,8 +47,8 @@ irc.send("JOIN " + channel + "\n")
 
 
 # Send message from files
-
-data = open('/tmp/aqi-latest.json', 'rU')
+#data = open('/tmp/aqi-latest.json', 'rU')
+data = open('/tmp/run-ooniprobe.log', 'rU')
 
 #try:
 #   message = data.read()
