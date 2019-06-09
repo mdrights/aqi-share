@@ -13,7 +13,8 @@ FnTestCN()
 	## Testing global test lists.
 	echo "==== $DATE ==== " |tee $LOG_FILE
 	cd
-	/usr/local/bin/ooniprobe -v blocking/web_connectivity -f ./.ooni/inputs/data/citizenlab-test-lists_cn.txt
+	/usr/local/bin/ooniprobe -v blocking/web_connectivity -t 120 -f ./.ooni/inputs/data/citizenlab-test-lists_cn.txt
+	#/usr/local/bin/ooniprobe -v blocking/web_connectivity -d 91.239.100.100 -t 120 -f ./.ooni/inputs/data/my-lists_cn.txt
 	#/usr/local/bin/ooniprobe -v blocking/web_connectivity -u https://tails.boum.org
 
 	echo "======== Finished testing for CN, the summary: ========" |tee -a $LOG_FILE
@@ -70,7 +71,7 @@ FnTestG()
 
 ## Run them.
 FnTestCN
-FnTestG
+#FnTestG
 
 echo -e "\n>>>> Done. <<<<" |tee -a $LOG_FILE
 [[ $ret -eq 0 ]] && exit 0 || exit 1
