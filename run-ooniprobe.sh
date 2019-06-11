@@ -4,12 +4,13 @@
 # 2019-06-09 created
 
 LOG_FILE="/tmp/run-ooniprobe.log"
-DATE=$(date +%Y%m%dT%H%M)
 SELF_PATH=$(dirname $0)
-ret=0
 
 FnTestCN()
 {
+	ret=0
+	DATE=$(date +%Y%m%dT%H%M)
+
 	## Testing global test lists.
 	echo "==== $DATE ==== " |tee $LOG_FILE
 	cd
@@ -33,7 +34,7 @@ FnTestCN()
 	# Send out the data
 	python2 $SELF_PATH/irc-client.py
 
-	if [[ $? -eq 0 ]]; then
+	if [[ $? -eq 0 ]] && [[ $ret -eq 0 ]]; then
 		echo "==== The data has been sent. ====" |tee -a $LOG_FILE
 	else
 		echo "==== The data has NOT been sent. ====" |tee -a $LOG_FILE
@@ -44,12 +45,15 @@ FnTestCN()
 
 FnTestG()
 {
+	ret=0
+	DATE=$(date +%Y%m%dT%H%M)
+
 	## Testing global test lists.
 	echo "==== $DATE ==== " |tee -a $LOG_FILE
 	cd
-	/usr/local/bin/ooniprobe -v blocking/web_connectivity -f ./.ooni/inputs/data/citizenlab-test-lists_global.txt
+	/usr/local/bin/ooniprobe -v blocking/web_connectivity -t 120 -f ./.ooni/inputs/data/citizenlab-test-lists_global.txt
 
-	echo "==== Finished testing for GLOBAL, the summary: ====" |tee -a $LOG_FILE
+	echo "==== Finished testing for GLOBAL ====" |tee -a $LOG_FILE
 
 	# Find the latest measurement (result).
 	RET_DIR=$(find $HOME/.ooni/measurements/ -maxdepth 1 -type d |sort -r |head -n1)
@@ -65,7 +69,7 @@ FnTestG()
 	# Send out the data
 	python2 $SELF_PATH/irc-client.py
 
-	if [[ $? -eq 0 ]]; then
+	if [[ $? -eq 0 ]] && [[ $ret -eq 0 ]]; then
 		echo "==== The data has been sent. ====" |tee -a $LOG_FILE
 	else
 		echo "==== The data has NOT been sent. ====" |tee -a $LOG_FILE
