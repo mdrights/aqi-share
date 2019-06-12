@@ -49,7 +49,7 @@ FnTestG()
 	DATE=$(date +%Y%m%dT%H%M)
 
 	## Testing global test lists.
-	echo "==== $DATE ==== " |tee -a $LOG_FILE
+	echo "==== $DATE ==== " |tee $LOG_FILE
 	cd
 	/usr/local/bin/ooniprobe -v blocking/web_connectivity -t 120 -f ./.ooni/inputs/data/citizenlab-test-lists_global.txt
 
@@ -79,7 +79,7 @@ FnTestG()
 
 ## Run them.
 FnTestCN
-FnTestG
+#FnTestG
 
 echo -e "\n>>>> Done. <<<<" |tee -a $LOG_FILE
 [[ $ret -eq 0 ]] && exit 0 || exit 1
