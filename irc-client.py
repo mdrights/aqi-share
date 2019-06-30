@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 ## Written by MDrights, at July 12, 2017.
-## Updated for aqi-share project (use OFTC), at April 07, 2018.
-## Version 0.0
+## Changelog
+## 2018.04.07   Updated for aqi-share project (use OFTC)
+## 2019.06.30   Send my OONI probe log; can send via Tor.
+
 
 import socket
 import sys
@@ -63,14 +65,18 @@ while True:
 #    print reply
 
     code = reply.split()
-#    print code
+    print code
 
-    if code[-7] == '366':
-        for message in data:
-            print 'Sending Messages ...'
-            irc.send("PRIVMSG" + " " + channel + " :" + message + "\r\n")
-            print 'Message sent.'
-        break
+    try:
+    #    if code[-7] == '366':   # Check the reversed 7th element when connecting to OFTC normally, but should check the reversed 13th element when using Tor.
+        if code[-13] == '366' or code[-7] == '366':
+            for message in data:
+                print 'Sending Messages ...'
+                irc.send("PRIVMSG" + " " + channel + " :" + message + "\r\n")
+                print 'Message sent.'
+            break
+    except:
+        pass
 
 irc.close()
 print 'Done!'
