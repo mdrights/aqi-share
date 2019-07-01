@@ -32,7 +32,7 @@ FnTestCN()
 	fi
 
 	# Send out the data
-	python2 $SELF_PATH/irc-client.py
+	torsocks python2 $SELF_PATH/irc-client.py
 
 	if [[ $? -eq 0 ]] && [[ $ret -eq 0 ]]; then
 		echo "==== The data has been sent. ====" |tee -a $LOG_FILE
